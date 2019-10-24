@@ -10,12 +10,16 @@ import 'package:flutter_competitive_training/demos/chapter_3/lesson_1_widget/les
 import 'package:flutter_competitive_training/demos/chapter_3/lesson_2_state_management/lesson_2_state_management_demo.dart';
 import 'package:flutter_competitive_training/demos/chapter_3/lesson_3_text_style/lesson_3_text_demo.dart';
 import 'package:flutter_competitive_training/demos/chapter_3/lesson_4_button/lesson_4_button_demo.dart';
+import 'package:flutter_competitive_training/demos/chapter_3/lesson_5_input_form/lesson_5_text_field_demo.dart';
+
+import 'demos/chapter_3/lesson_5_input_form/lesson5_form_demo.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: _getRoutes(),
-      onGenerateRoute: (setting) {
+      onGenerateRoute: (setting) {//如果跳转page没有添加到routes中，跳转时会进入到这个方法；用于在路由跳转前进行判断，例如用户未登录则进入登录页面
         if (setting.name == RouterHookDemo.name) {
           return MaterialPageRoute(
             builder: (context) => RouterHookDemo(),
@@ -52,6 +56,8 @@ class MyApp extends StatelessWidget {
       StateManagementDemo.name: (context) => StateManagementDemo(),
       TextDemo.name: (context) => TextDemo(),
       ButtonDemo.name: (context) => ButtonDemo(),
+      TextFieldDemo.name: (context) => TextFieldDemo(),
+      FormDemo.name: (context) => FormDemo(),
     };
   }
 }
@@ -141,6 +147,14 @@ class _MyHomePageState extends State<MyHomePage> {
           title: "按钮示例",
           navigatorName: ButtonDemo.name,
           lessonRoute: () => Navigator.of(context).pushNamed(ButtonDemo.name),
+        ),
+      )
+      ..add(
+        MainPageItem(
+          index: "3.5",
+          title: "输入框及表单示例",
+          navigatorName: TextFieldDemo.name,
+          lessonRoute: () => Navigator.of(context).pushNamed(TextFieldDemo.name),
         ),
       );
   }
